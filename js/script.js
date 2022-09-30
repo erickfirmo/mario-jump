@@ -1,6 +1,8 @@
 const mario = document.querySelector('.mario');
-const pipe = document.querySelector('.pipe')
-const clouds = document.querySelector('.clouds')
+const pipe = document.querySelector('.pipe');
+const clouds = document.querySelector('.clouds');
+const pipeVelocity = (1.5 / 2000) * window.innerWidth;
+pipe.style.animationDuration = `${pipeVelocity}s`;
 
 const jump = () => {
     mario.classList.add('jump');
