@@ -78,7 +78,10 @@ const startGame = () => {
             clouds.style.animation = 'none';
             clouds.style.right = `${cloudsPosition}px`;
     
-            localStorage.setItem("record", scoreCount);
+            recordCount = localStorage.getItem('record');
+            recordCount = recordCount < scoreCount ? scoreCount : recordCount;
+            localStorage.setItem('record', recordCount);
+
             clearInterval(loop);
         }
     }, 10);
