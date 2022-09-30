@@ -45,7 +45,7 @@ body {
     cursor: pointer;
     height: 60px;
     border-radius: 10px;
-    font-size: 40px;
+    font-size: 20px;
 }
 
 
@@ -120,6 +120,11 @@ body {
 }
 
 @media screen and (min-width: 768px) {
+
+    .btn-start {
+        font-size: 40px;
+    }
+    
     .pipe {
         bottom: 0px;
         width: 80px;
