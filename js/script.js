@@ -3,7 +3,7 @@ const pipe = document.querySelector('.pipe');
 const clouds = document.querySelector('.clouds');
 const startButton = document.querySelector('.btn-start');
 const score = document.querySelector('.score');
-//pipe.style.animationDuration = `${0.0015 * window.innerWidth}s`;
+const record = document.querySelector('.record');
 
 var pipeDistanceLeft = 73;
 var pipeDistanceBottom = 40;
@@ -37,7 +37,8 @@ const loadGame = () => {
         marioLeft = 38;
     }
 
-    
+    record.innerText = localStorage.getItem("record") ?? 0;
+
     return false;
 }
 
@@ -55,11 +56,15 @@ const startGame = () => {
     pipe.classList.add('active');
     startButton.style.display = 'none';
 
+    let scoreCount = 0;
+
     const loop = setInterval(() => {
         const pipePosition = pipe.offsetLeft;
-        let marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
+        const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
         const cloudsPosition = +window.getComputedStyle(clouds).right.replace('px', '');
-    
+        scoreCount++;
+        score.innerText = scoreCount;
+
         if (pipePosition <= pipeDistanceLeft && pipePosition > 0 && marioPosition < pipeDistanceBottom) {
             pipe.style.animation = 'none';
             pipe.style.left = `${pipePosition}px`;
@@ -73,6 +78,7 @@ const startGame = () => {
             clouds.style.animation = 'none';
             clouds.style.right = `${cloudsPosition}px`;
     
+            localStorage.setItem("record", scoreCount);
             clearInterval(loop);
         }
     }, 10);
