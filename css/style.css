@@ -65,7 +65,7 @@ body {
    height: 40px;
 }
 
-.pipe .active {
+.pipe.active {
     animation: pipe-animation 1.5s infinite linear;
 }
 

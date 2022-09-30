@@ -1,7 +1,7 @@
 const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
 const clouds = document.querySelector('.clouds');
-const start = document.querySelector('.start');
+const startButton = document.querySelector('.btn-start');
 const score = document.querySelector('.score');
 //pipe.style.animationDuration = `${0.0015 * window.innerWidth}s`;
 
@@ -37,8 +37,11 @@ const loadGame = () => {
         marioLeft = 38;
     }
 
+    
     return false;
 }
+
+
 
 window.onload = loadGame;
 window.onresize = loadGame;
@@ -48,6 +51,9 @@ const startGame = () => {
     document.addEventListener('keydown', jump);
     document.addEventListener('click', jump);
     document.addEventListener('touchstart', jump);
+
+    pipe.classList.add('active');
+    startButton.style.display = 'none';
 
     const loop = setInterval(() => {
         const pipePosition = pipe.offsetLeft;
@@ -72,5 +78,8 @@ const startGame = () => {
     }, 10);
 }
 
+startButton.keydown = startGame;
+startButton.onclick = startGame;
+startButton.touchstart = startGame;
 
 
