@@ -28,7 +28,12 @@ window.onload = loadGame;
 window.onresize = loadGame;
 
 const jump = () => {
-    mario.classList.add('jump');
+
+    let marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
+
+    if(marioPosition == 0) {
+        mario.classList.add('jump');
+    }
 
     setTimeout(() => {
         mario.classList.remove('jump');
@@ -38,7 +43,7 @@ const jump = () => {
 
 const loop = setInterval(() => {
     const pipePosition = pipe.offsetLeft;
-    const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
+    let marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
     const cloudsPosition = +window.getComputedStyle(clouds).right.replace('px', '');
 
     if (pipePosition <= pipeDistanceLeft && pipePosition > 0 && marioPosition < pipeDistanceBottom) {
