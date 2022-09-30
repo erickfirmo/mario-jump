@@ -17,12 +17,56 @@ body {
     background: linear-gradient(#87CEEB, #E0F6FF);
 }
 
+.score-box {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: auto;
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    text-align: center;
+    text-shadow: 1px 1px 5px #00000070;
+}
+
+.btn-start {
+    display: block;
+    margin: auto;
+    top: calc(50vh - 50px);
+    border: none;
+    background-color: #ff2626;
+    left: calc(50% - 16.5%);
+    color: #fff;
+    position: absolute;
+    font-weight: 700;
+    width: 33%;
+    cursor: pointer;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 40px;
+}
+
+
+.btn-start:hover {background-color: #cd2222}
+
+.btn-start:active {
+  background-color: #cd2222;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 .pipe {
    position: absolute;
    bottom: 0px;
+   right: -80px;
    width: 40px;
    height: 40px;
-   animation: pipe-animation 1.5s infinite linear;
+}
+
+.pipe .active {
+    animation: pipe-animation 1.5s infinite linear;
 }
 
 .mario {
@@ -31,12 +75,16 @@ body {
     bottom: 0;
 }
 
-
 .clouds {
     position: absolute;
     top: 10px;
     width: 250px;
     animation: clouds-animation 20s infinite linear;
+
+}
+
+.jump {
+    animation: jump 500ms ease-out;
 }
 
 @keyframes jump {
@@ -63,7 +111,7 @@ body {
 
 @keyframes clouds-animation {
     from {
-        right: -550px;
+        right: -250px;
     }
 
     to {
@@ -73,26 +121,20 @@ body {
 
 @media screen and (min-width: 768px) {
     .pipe {
-        position: absolute;
         bottom: 0px;
         width: 80px;
         height: 80px;
-        animation: pipe-animation 1.5s infinite linear;
     } 
 
     .mario {
-        position: absolute;
         width: 150px;
         bottom: 0;
     }
 
     .clouds {
-        position: absolute;
         top: 30px;
         width: 550px;
-        animation: clouds-animation 20s infinite linear;
     }
-
 
     @keyframes jump {
         0% {
@@ -126,12 +168,6 @@ body {
         }
     }
 }
-
-
-.jump {
-    animation: jump 500ms ease-out;
-}
-
 
 @keyframes pipe-animation {
     from {
