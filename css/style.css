@@ -20,27 +20,53 @@ body {
 .pipe {
    position: absolute;
    bottom: 0px;
-   width: 80px;
-   height: 80px;
+   width: 40px;
+   height: 40px;
    animation: pipe-animation 1.5s infinite linear;
 }
 
 .mario {
     position: absolute;
-    width: 150px;
+    width: 75px;
     bottom: 0;
 }
+
+
+.clouds {
+    position: absolute;
+    top: 10px;
+    width: 250px;
+    animation: clouds-animation 20s infinite linear;
+}
+
+@media screen and (min-width: 768px) {
+    .pipe {
+        position: absolute;
+        bottom: 0px;
+        width: 80px;
+        height: 80px;
+        animation: pipe-animation 1.5s infinite linear;
+    } 
+
+    .mario {
+        position: absolute;
+        width: 150px;
+        bottom: 0;
+    }
+
+    .clouds {
+        position: absolute;
+        top: 30px;
+        width: 550px;
+        animation: clouds-animation 20s infinite linear;
+    }
+}
+
 
 .jump {
     animation: jump 500ms ease-out;
 }
 
-.clouds {
-    position: absolute;
-    top: 30px;
-    width: 550px;
-    animation: clouds-animation 20s infinite linear;
-}
 
 @keyframes pipe-animation {
     from {
