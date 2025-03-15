@@ -64,6 +64,8 @@ const startGame = () => {
 
     mario.style.width = `${marioRunWidth}px`;
     mario.src = './images/mario.gif';
+    mario.style.animation = '';
+
 
     clouds.style.right = 'unset';
     clouds.style.animation = 'clouds-animation 20s infinite linear';
