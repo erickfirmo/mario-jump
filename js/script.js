@@ -4,10 +4,12 @@ const clouds = document.querySelector('.clouds');
 const startButton = document.querySelector('.btn-start');
 const score = document.querySelector('.score');
 const record = document.querySelector('.record');
+var started = false;
 
 var pipeDistanceLeft = 73;
 var pipeDistanceBottom = 40;
 var marioWidth = 40;
+var marioRunWidth = 75;
 var marioLeft = 30;
 
 const jump = () => {
@@ -29,12 +31,14 @@ const loadGame = () => {
         pipeDistanceBottom = 40;
         marioWidth = 40;
         marioLeft = 30;
+        marioRunWidth = 75;
     } else {  
         // Desktop
         pipeDistanceLeft = 120;
         pipeDistanceBottom = 75;
         marioWidth = 80;
         marioLeft = 38;
+        marioRunWidth = 150;
     }
 
     record.innerText = localStorage.getItem("record") ?? 0;
@@ -49,12 +53,24 @@ window.onresize = loadGame;
 
 const startGame = () => {
 
+    loadGame
+    started = true
     document.addEventListener('keydown', jump);
     document.addEventListener('click', jump);
     document.addEventListener('touchstart', jump);
 
-    pipe.classList.add('active');
+    pipe.style.left = `unset`;
+    pipe.style.animation = 'pipe-animation 1.5s infinite linear';
+
+    mario.style.width = `${marioRunWidth}px`;
+    mario.src = './images/mario.gif';
+
+    clouds.style.right = 'unset';
+    clouds.style.animation = 'clouds-animation 20s infinite linear';
+
     startButton.style.display = 'none';
+
+
 
     let scoreCount = 0;
 
@@ -62,13 +78,15 @@ const startGame = () => {
         const pipePosition = pipe.offsetLeft;
         const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
         const cloudsPosition = +window.getComputedStyle(clouds).right.replace('px', '');
-        scoreCount++;
         score.innerText = scoreCount;
 
-        if (pipePosition <= pipeDistanceLeft && pipePosition > 0 && marioPosition < pipeDistanceBottom) {
+        // Game over
+        if (started == true && pipePosition <= pipeDistanceLeft && pipePosition > 0 && marioPosition < pipeDistanceBottom) {
+            started = false;
+
             pipe.style.animation = 'none';
             pipe.style.left = `${pipePosition}px`;
-    
+
             mario.style.animation = 'none';
             mario.style.bottom = `${marioPosition}px`;
             mario.src = './images/game-over.png'
@@ -82,8 +100,13 @@ const startGame = () => {
             recordCount = recordCount < scoreCount ? scoreCount : recordCount;
             localStorage.setItem('record', recordCount);
 
+
+            startButton.style.display = 'block';
+            startButton.innerText = 'JOGAR NOVAMENTE';
+
             clearInterval(loop);
         }
+        scoreCount++;
     }, 10);
 }
 
