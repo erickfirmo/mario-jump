@@ -65,6 +65,7 @@ const startGame = () => {
     mario.style.width = `${marioRunWidth}px`;
     mario.src = './images/mario.gif';
     mario.style.animation = '';
+    mario.classList.remove('jump');
 
 
     clouds.style.right = 'unset';
