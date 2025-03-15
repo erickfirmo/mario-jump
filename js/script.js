@@ -66,6 +66,8 @@ const startGame = () => {
     mario.src = './images/mario.gif';
     mario.style.animation = '';
     mario.classList.remove('jump');
+    mario.style.bottom = '0';
+
 
 
     clouds.style.right = 'unset';
