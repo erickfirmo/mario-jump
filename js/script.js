@@ -85,6 +85,32 @@ const startGame = () => {
         const cloudsPosition = +window.getComputedStyle(clouds).right.replace('px', '');
         score.innerText = scoreCount;
 
+        let scoreStage = scoreCount % 9000;
+
+        let skyDay = document.getElementsByClassName('day')[0];
+        let skyMorning = document.getElementsByClassName('morning')[0];
+        let skyNight = document.getElementsByClassName('night')[0];
+
+        // Day
+        if(scoreStage > 0 && scoreStage < 3000) {
+            skyNight.style.opacity = '0';
+            skyDay.style.opacity = '1';
+        }
+
+        // Morning
+        if(scoreStage > 3000 && scoreStage < 6000) {
+            skyDay.style.opacity = '0';
+            skyMorning.style.opacity = '1';
+        }
+
+        // Night
+        if(scoreStage > 6000 && scoreStage < 9000) {
+            
+            skyMorning.style.opacity = '0';
+            skyNight.style.opacity = '1';
+        }
+        
+
         // Game over
         if (started == true && pipePosition <= pipeDistanceLeft && pipePosition > 0 && marioPosition < pipeDistanceBottom) {
             started = false;
